@@ -3,18 +3,13 @@ import React, {Component} from 'react';
 import reactMixin from 'react-mixin';
 import BlazeTemplate from './BlazeTemplate';
 import {Users, Posts} from 'collections';
-import './App.css';
+import LoginButton from './LoginButtons.jsx';
+import './LoginButtons.less';
 
 Meteor.call('sayHello', function(err, res) {
   console.log(res);
 });
 
-if (Meteor.isServer) {
-  // Template does not support server side
-  var Template = {
-    loginButtons: 'any'
-  };
-}
 
 @reactMixin.decorate(ReactMeteorData)
 export default class App extends Component {
@@ -25,11 +20,16 @@ export default class App extends Component {
   }
 
   render() {
+    // Template does not support server side
+    let _Template = typeof(Template) === 'function' ? Template : {
+      loginButtons: 'any'
+    };
     let userCount = Users.find().fetch().length;
     let postsCount = Posts.find().fetch().length;
     return (
       <div className="App">
-        <BlazeTemplate template={Template.loginButtons} />
+        <BlazeTemplate template={_Template.loginButtons} />
+        <LoginButton/>
         <h1>Hello Webpack!</h1>
         <p>There are {userCount} users in the Minimongo  (login to change)</p>
         <p>There are {postsCount} posts in the Minimongo  (autopublish removed)</p>

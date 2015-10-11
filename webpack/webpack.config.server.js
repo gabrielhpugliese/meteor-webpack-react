@@ -29,6 +29,10 @@ module.exports = {
         test: /\.css$/,
         loader: 'null-loader'
       },
+      {
+        test: /\.less$/,
+        loader: 'null-loader'
+      }
     ],
   },
 };
