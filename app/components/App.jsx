@@ -29,10 +29,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <BlazeTemplate template={_Template.loginButtons} />
-        <LoginButton/>
         <h1>Hello Webpack!</h1>
         <p>There are {userCount} users in the Minimongo  (login to change)</p>
         <p>There are {postsCount} posts in the Minimongo  (autopublish removed)</p>
+        <LoginButton/>
       </div>
     );
   }
